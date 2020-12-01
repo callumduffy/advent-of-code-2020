@@ -50,15 +50,52 @@ def speed_solve(file_name):
             try:
                 if inverted_dict[num]:
                     return num * (2020-num)
-            except:
+            except KeyError:
                 inverted_num = 2020 - num
                 inverted_dict[inverted_num] = True
     except:
         print("Issue parsing input from file.")
         raise ValueError("Issue parsing input from file.")
 
-if __name__ == "__main__":
-    simple_ans = simple_solve("day_one.txt")
-    medium_ans = medium_solve("day_one.txt")
-    speed_ans = speed_solve("day_one.txt")
+
+def triple_num_solve(file_name):
+    """Solve when we need three numbers to add to 2020."""
+    num_list = []
+    sum_dict = {}
+
+    try:
+        file_content = open(file_name, "r")
+        for index, line in enumerate(file_content):
+            num = int(line.rstrip())
+            try:
+                if sum_dict[num]:
+                    add_list = sum_dict[num]
+                    print(num, add_list[0], add_list[1])
+                    return num * add_list[0] * add_list[1]
+            except KeyError:
+                for i in num_list:
+                    inverted_num = 2020 - (i+num)
+                    sum_dict[inverted_num] = [i, num]
+            num_list.append(num)
+    except:
+        print("Issue parsing input from file.")
+        raise ValueError("Issue parsing input from file.")
+
+
+def part_one(input_file):
+    """Run the code for the first coin of the day."""
+    simple_ans = simple_solve(input_file)
+    medium_ans = medium_solve(input_file)
+    speed_ans = speed_solve(input_file)
     print(simple_ans, medium_ans, speed_ans)
+
+
+def part_two(input_file):
+    """Run the code needed for part two of the day."""
+    tn_ans = triple_num_solve(input_file)
+    print(tn_ans)
+
+if __name__ == "__main__":
+    input_file = "day_one.txt"
+    # part_one(input_file)
+    part_two(input_file)
