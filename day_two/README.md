@@ -54,8 +54,12 @@ I decided to create a class to handle manipulating each line due to the awkwardn
 - Character to use
 - Password
 
-This allowed for an initial naive solution to read in all the items as objects of this class, and then run a simple method to check whether it fit the criteria sequentially. I then optimised this up slightly by reusing a single variable for each object and not creating a list, just incrementing a count at run time if it was valid.
+This allowed for an initial naive solution to read in all the items as objects of this class, and then run a simple method to check whether it fit the criteria sequentially. I then optimised this up slightly by reusing a single variable for each object and not creating a list, just incrementing a count at run time if it was valid, rather than storing each one.
 
-The final part is to speed up the checking process as it probably can be done better than linear time.
+It is likely possible to speed up the method of checking if the password fits the policy however i was tired and havent updated this yet, I may revisit later, but for now I decided O(n) int he worst case fit well enough for my day.
 
 ### Part Two
+
+This was actually quite simple to implement and sped everything up greatly, it removed the O(n) traversal and allowed just two searched by index checks, working an XOR on these.
+
+Easy peasy, see ya in Day 3 future me. No one else is ever gonna read this.
