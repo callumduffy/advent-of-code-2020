@@ -23,12 +23,39 @@ In the above example, 2 passwords are valid. The middle password, cdefg, is not;
 
 How many passwords are valid according to their policies?
 
-Your puzzle answer was ....
+Your puzzle answer was 456.
 
 ### Part Two
+
+While it appears you validated the passwords correctly, they don't seem to be what the Official Toboggan Corporate Authentication System is expecting.
+
+The shopkeeper suddenly realizes that he just accidentally explained the password policy rules from his old job at the sled rental place down the street! The Official Toboggan Corporate Policy actually works a little differently.
+
+Each policy actually describes two positions in the password, where 1 means the first character, 2 means the second character, and so on. (Be careful; Toboggan Corporate Policies have no concept of "index zero"!) Exactly one of these positions must contain the given letter. Other occurrences of the letter are irrelevant for the purposes of policy enforcement.
+
+Given the same example list from above:
+
+1-3 a: abcde is valid: position 1 contains a and position 3 does not.
+1-3 b: cdefg is invalid: neither position 1 nor position 3 contains b.
+2-9 c: ccccccccc is invalid: both position 2 and position 9 contain c.
+
+How many passwords are valid according to the new interpretation of the policies?
 
 ## My Thoughts
 
 ### Part One
+
+Today's puzzle was a litle bit more spicy, thre input is a little more complex, and each line will have to be manipulated and split, thankfully python is great for this so we were in good shape.
+
+I decided to create a class to handle manipulating each line due to the awkwardness of the data, i had this contain:
+
+- Minimum
+- Maximum
+- Character to use
+- Password
+
+This allowed for an initial naive solution to read in all the items as objects of this class, and then run a simple method to check whether it fit the criteria sequentially. I then optimised this up slightly by reusing a single variable for each object and not creating a list, just incrementing a count at run time if it was valid.
+
+The final part is to speed up the checking process as it probably can be done better than linear time.
 
 ### Part Two
