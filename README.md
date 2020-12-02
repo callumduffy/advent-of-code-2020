@@ -7,6 +7,8 @@ Just something to mess about for the month, because i'm off work for a lot of it
     - [x] Star 1
     - [x] Star 2
 - [ ] Day 2
+    - [x] Star 1
+    - [ ] Star 2
 - [ ] Day 3
 - [ ] Day 4
 - [ ] Day 5
