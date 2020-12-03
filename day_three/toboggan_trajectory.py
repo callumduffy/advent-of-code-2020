@@ -1,10 +1,12 @@
 """ Day three of the advent of code 2020."""
 
 INPUT_FILE = "input.txt"
-X_MOVE = 3
-Y_MOVE = 1
-X_MOVE_LIST = [1,3,5,7,1]
-Y_MOVE_LIST = [1,1,1,1,2]
+
+I_MOVE = 1
+J_MOVE = 3
+
+I_MOVE_LIST = [1,1,1,1,2]
+J_MOVE_LIST = [1,3,5,7,1]
 
 def fetch_input_as_list():
     """Testing fetching the list all at once."""
@@ -22,26 +24,41 @@ def calculate_wrap_move(position, step, max_pos):
     return (position+step) - (max_pos) -1
 
 
-def run_part_one():
-    """Runner for logic for part one of the problem."""
-    rows = fetch_input_as_list()
-    x_pos = 0
-    y_pos = 0
+def ride_that_toboggan_bro(i_step, j_step, tree_list):
+    """Iterate over each line and check if a tree."""
+    i_pos = 0
+    j_pos = 0
     tree_count = 0
+    row_count = len(tree_list)
 
-    for row in rows:
-        if row[x_pos] == '#':
+    while i_pos < row_count:
+        max_j = len(tree_list[i_pos])-1
+
+        if tree_list[i_pos][j_pos] == '#':
             tree_count+=1
 
-        if x_pos + X_MOVE > len(row)-1:
-            x_pos = calculate_wrap_move(x_pos, X_MOVE, len(row)-1)
+        if j_pos + j_step > max_j:
+            j_pos = calculate_wrap_move(j_pos, j_step, max_j)
         else:
-            x_pos += X_MOVE
-        y_pos+=1
-
+            j_pos += j_step
+        i_pos+=i_step
     return tree_count
 
 
 if __name__ == "__main__":
-    p1_ans = run_part_one()
-    print(p1_ans)
+    toboggan_journey = fetch_input_as_list()
+    p1_ans = ride_that_toboggan_bro(I_MOVE, J_MOVE, toboggan_journey)
+    print(f"Part one: {p1_ans}")
+
+    p2_ans = 0
+    i = 0
+
+    while i < len(I_MOVE_LIST):
+        trees_hit = ride_that_toboggan_bro(I_MOVE_LIST[i], J_MOVE_LIST[i], toboggan_journey)
+        if i ==0:
+            p2_ans += trees_hit
+        else:
+            p2_ans *= trees_hit
+        i+=1
+
+    print(f"Part two: {p2_ans}")

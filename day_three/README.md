@@ -82,3 +82,9 @@ A simple function to calculate the index if it was greater than the length was a
 Simply count++ if char == '#'. Job done.
 
 ### Part Two
+
+Realised i could make it faster by checking the whole list by index instead of checking by row, this was realised by seeing i would have to increment by two in the final check so this would save iterating over every row.
+
+I now checked input[i][j] == '#' for each i value, and added on if so. I also made the method a lot cleaner so i could reuse the same code for part one and two.
+
+Nice and easy today.
