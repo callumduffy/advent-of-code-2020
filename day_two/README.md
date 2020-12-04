@@ -1,4 +1,4 @@
-# Day 1 Problem
+# Day 2 Problem
 
 ## Description 
 
